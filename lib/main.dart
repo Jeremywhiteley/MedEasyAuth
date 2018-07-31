@@ -59,14 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
       "easyAuth", AzureADEasyAuthType.aad, "https://backmed.azurewebsites.net",
       redirectUrl: "simpleauth.sample://easyauth.callback");
 
-  final simpleAuth.GoogleApi googleApi = new simpleAuth.GoogleApi("google",
-      "992461286651-k3tsbcreniknqptanrugsetiimt0lkvo.apps.googleusercontent.com",
-      clientSecret: "avrYAIxweNZwcHpsBlIzTp04",
-      scopes: [
-        "https://www.googleapis.com/auth/userinfo.email",
-        "https://www.googleapis.com/auth/userinfo.profile"
-      ]);
-
   @override
   Widget build(BuildContext context) {
     SimpleAuthFlutter.context = context;
@@ -102,24 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('Logout'),
             onTap: () {
               logout(easyApi);
-            },
-          ),
-          ListTile(
-            title: Text(
-              "Google OAuth",
-              style: Theme.of(context).textTheme.headline,
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.launch),
-            title: Text('Login'),
-            onTap: () async {
-              try {
-                var user = await googleApi.getUserProfile();
-                showMessage("${user.name} logged in");
-              } catch (e) {
-                showError(e);
-              }
             },
           ),
         ],
